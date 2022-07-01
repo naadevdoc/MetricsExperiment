@@ -16,7 +16,7 @@ namespace BasketBusinessTestsGherkin.StepDefinitions
             sampleAnswerBasketRequest = new SampleAnswerBasketRequest();
         }
 
-        [When(@"I request to service")]
+        [When(@"I request the request to the service")]
         public void WhenIRequestToService()
         {
             sampleAnswerBasketResponse = ServiceFactory.GetA<IBasketServices>().GetSampleResponseService(sampleAnswerBasketRequest);
