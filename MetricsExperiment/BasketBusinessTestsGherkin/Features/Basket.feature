@@ -27,13 +27,15 @@ Background:
 
 
 Rule: Persona can check in products without purchasing
-
-Scenario: This is a dummy scenario to illustrate architecture
+@executedInDelta00
+Scenario: Delta00->This is a dummy scenario to illustrate architecture
 	Given I create a sample answer request
 	When I send the request to the service
 	Then the content of sample answer response will be 'true'
 
-Scenario: A persona can check in a single product
+@executedInDelta00
+@executedInDelta01
+Scenario: Delta01->A persona can check in a single product
 	Given I am David
 	And I am having an empty cart
 	And I check in a product 'motion-cam-hero-10-2021'
@@ -41,7 +43,10 @@ Scenario: A persona can check in a single product
 	Then there will be a single product with code 'motion-cam-hero-10-2021'
 	And cart total will be 10 EUR
 
-Scenario: A persona can check in same product several times
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+Scenario: Delta02->A persona can check in same product several times
 	Given I am David
 	And I am having an empty cart
 	And I add following products to my cart 2 times
@@ -54,7 +59,11 @@ Scenario: A persona can check in same product several times
 	 | motion-cam-hero-10-2021 | 10    |
 	And total cost will be 20 EUR
 
-Scenario: A persona can also check in several products
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+Scenario: Delta03->A persona can also check in several products
 	Given I am David
 	And I am having an empty cart
 	And I add following products to my cart
@@ -68,7 +77,12 @@ Scenario: A persona can also check in several products
 	 | phone-hero-13-2022      | 1342  |
 	And cart total will be 1352 EUR
 
-Scenario: A persona can check in a product and pay in a different currency than preferred one
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+Scenario: Delta04->A persona can check in a product and pay in a different currency than preferred one
 	Given I am Paul
 	And I am having an empty cart
 	And I check in a product 'motion-cam-hero-10-2021'
@@ -78,13 +92,26 @@ Scenario: A persona can check in a product and pay in a different currency than 
 	
 Rule: A persona can purchase a previously checked in product
 
-Scenario: A persona purchases a checked in product
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+Scenario: Delta05->A persona purchases a checked in product
 	Given I am Paul
 	And I check in a product 'motion-cam-hero-10-2021'
 	When I purchase my product
 	Then I will receive a message 'Thank you for your purchase'
-
-Scenario: A persona cannot purchase when cart is empty
+	
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+Scenario: Delta06->A persona cannot purchase when cart is empty
 	Given I am Paul
 	And I am having an empty cart
 	When I purchase my product
@@ -92,7 +119,15 @@ Scenario: A persona cannot purchase when cart is empty
 
 Rule: Some products have a discount
 
-Scenario: A persona who checks in a discounted product will get a discount
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+Scenario: Delta07->A persona who checks in a discounted product will get a discount
 	Given I am David
 	And I am having an empty cart
 	And I add following products to my cart
@@ -108,7 +143,16 @@ Scenario: A persona who checks in a discounted product will get a discount
 
 Rule: Personas have a fidelity discount and this fidelity discount is different depending on buying currency
 
-Scenario: A persona with fidelity discount will get a discount on final price
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+Scenario: Delta08->A persona with fidelity discount will get a discount on final price
 	Given I am Maria
 	And I am having an empty cart
 	And I check in a product 'motion-cam-hero-10-2021'
@@ -117,7 +161,17 @@ Scenario: A persona with fidelity discount will get a discount on final price
 	And cart total will be 8 EUR
 	And cart total will show a discount of 2 EUR
 
-Scenario: Product discount does not apply for personas with fidelity discount
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+@executedInDelta09
+Scenario: Delta09->Product discount does not apply for personas with fidelity discount
 	Given I am Maria
 	And I am having an empty cart
 	And I add following products to my cart
@@ -132,8 +186,18 @@ Scenario: Product discount does not apply for personas with fidelity discount
 	And cart total will be 16 EUR
 	And cart total will show a discount of 4 EUR
 
-
-Scenario: Product discount does not apply on a different currency than local one
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+@executedInDelta09
+@executedInDelta10
+Scenario: Delta10->Product discount does not apply on a different currency than local one
 	Given I am Paul
 	And I am having an empty cart
 	And I check in a product 'motion-cam-hero-09-2019'
@@ -141,26 +205,80 @@ Scenario: Product discount does not apply on a different currency than local one
 	Then there will be a single product with code 'motion-cam-hero-09-2019'
 	And cart total will be 11.34 USD
 
-Scenario: Fidelity discount applies on a different currency than local one
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+@executedInDelta09
+@executedInDelta10
+@executedInDelta11
+Scenario: Delta11->Fidelity discount applies on a different currency than local one
 	Given I am Jules
 	And I am having an empty cart
 	And I check in a product 'motion-cam-hero-09-2019'
 	When I list checked in products
 	Then there will be a single product with code 'motion-cam-hero-09-2019'
 	And cart total will be 10.77 USD
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+@executedInDelta09
+@executedInDelta10
+@executedInDelta11
+@executedInDelta12
 
-Scenario: Fidelity discount is assigned to currency
+Scenario: Delta12->Fidelity discount is assigned to currency
 	Given I am Jules
 	When I switch my preferred currency from USD to EUR
 	Then my fidelity discount will be 0%
 
-Scenario: Fidelity discount is persisted when the persona switches back to previous currency
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+@executedInDelta09
+@executedInDelta10
+@executedInDelta11
+@executedInDelta12
+@executedInDelta13
+Scenario: Delta13->Fidelity discount is persisted when the persona switches back to previous currency
 	Given I am Jules
 	And I switched my preferred currency from USD to EUR
 	When I siwtch my preferred currency from EUR to USD
 	Then my fidelity discount will be 5%
 
-Scenario: A persona who buys more than 2000 EUR in a single buy upgrades fidelity discount by 1%
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+@executedInDelta09
+@executedInDelta10
+@executedInDelta11
+@executedInDelta12
+@executedInDelta13
+@executedInDelta14
+Scenario: Delta14->A persona who buys more than 2000 EUR in a single buy upgrades fidelity discount by 1%
 	Given I am Paul
 	And I add following products to my cart
 	 | product            |
@@ -172,7 +290,23 @@ Scenario: A persona who buys more than 2000 EUR in a single buy upgrades fidelit
 	 | Thank you for your purchase                             |
 	 | Congratulations. Now you have a fidelity discount of 1% |
 
-Scenario: Maximum fidelity discount for a persona is 20%
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+@executedInDelta09
+@executedInDelta10
+@executedInDelta11
+@executedInDelta12
+@executedInDelta13
+@executedInDelta14
+@executedInDelta15
+Scenario: Delta15->Maximum fidelity discount for a persona is 20%
 	Given I am Maria
 	And I add following products to my cart
 	 | product            |
