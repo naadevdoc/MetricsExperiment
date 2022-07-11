@@ -21,6 +21,7 @@ namespace BasketBusiness
         public override void Load()
         {
             Bind<IBasketServices>().To<BasketServices>();
+            Bind<ICatalogueServices>().To<CatalogueServices>();
         }
     }
 }
