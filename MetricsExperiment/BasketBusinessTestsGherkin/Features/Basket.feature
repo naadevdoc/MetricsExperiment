@@ -223,3 +223,22 @@ Scenario: Delta11->Fidelity discount applies on a different currency than local 
 	When I list checked in products
 	Then there will be a single product with code 'motion-cam-hero-09-2019'
 	And cart total will be 10.77 USD
+
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+@executedInDelta09
+@executedInDelta10
+@executedInDelta11
+@executedInDelta12
+
+Scenario: Delta12->Fidelity discount is assigned to currency
+	Given I am Jules
+	When I switch my preferred currency from USD to EUR
+	Then my fidelity discount will be 0%
