@@ -32,3 +32,14 @@ Scenario: Delta00->This is a dummy scenario to illustrate architecture
 	Given I create a sample answer request
 	When I send the request to the service
 	Then the content of sample answer response will be 'true'
+
+@executedInDelta00
+@executedInDelta01
+Scenario: Delta01->A persona can check in a single product
+	Given I am David
+	And I am having an empty cart
+	And I check in a product 'motion-cam-hero-10-2021'
+	When I list checked in products
+	Then there will be a single product with code 'motion-cam-hero-10-2021'
+	And cart total will be 10 EUR
+	
