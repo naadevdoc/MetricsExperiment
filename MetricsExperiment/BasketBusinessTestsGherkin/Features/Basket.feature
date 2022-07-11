@@ -4,13 +4,13 @@ I want to get information of checked products in my cart
 So I can know how much money will cost me
 Background:
 	Given the catalogue has following products
-	  | product                 | prize | currency | discount |
+	  | product                 | price | currency | discount |
 	  | motion-cam-hero-09-2019 | 10    | EUR      | 10%      |
 	  | motion-cam-hero-10-2021 | 10    | EUR      | 0%       |
 	  | phone-hero-13-2022      | 1342  | EUR      | 0%       |
 	  | phone-hero-12-2019      | 999   | EUR      | 5%       |
 	And these personas are registered
-	  | PersonaName | Fidelity discount | Preferred currency |
+	  | Name        | Fidelity discount | Preferred currency |
 	  | David       | 0%                | EUR                |
 	  | Maria       | 20%               | EUR                |
 	  | Paul        | 0%                | USD                |
