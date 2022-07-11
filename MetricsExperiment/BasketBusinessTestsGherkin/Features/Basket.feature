@@ -184,3 +184,22 @@ Scenario: Delta09->Product discount does not apply for personas with fidelity di
 	 | motion-cam-hero-9-2019 | 10    |
 	And cart total will be 16 EUR
 	And cart total will show a discount of 4 EUR
+
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+@executedInDelta09
+@executedInDelta10
+Scenario: Delta10->Product discount does not apply on a different currency than local one
+	Given I am Paul
+	And I am having an empty cart
+	And I check in a product 'motion-cam-hero-09-2019'
+	When I list checked in products
+	Then there will be a single product with code 'motion-cam-hero-09-2019'
+	And cart total will be 11.34 USD
