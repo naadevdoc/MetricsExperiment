@@ -76,3 +76,17 @@ Scenario: Delta03->A persona can also check in several products
 	 | motion-cam-hero-10-2021 | 10    |
 	 | phone-hero-13-2022      | 1342  |
 	And cart total will be 1352 EUR
+
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+Scenario: Delta04->A persona can check in a product and pay in a different currency than preferred one
+	Given I am Paul
+	And I am having an empty cart
+	And I check in a product 'motion-cam-hero-10-2021'
+	When I list checked in products
+	Then there will be a single product with code 'motion-cam-hero-10-2021'
+	And cart total will be 11.34 USD
+	
