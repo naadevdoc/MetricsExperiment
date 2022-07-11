@@ -24,7 +24,7 @@ namespace BasketBusinessTestsGherkin.Features
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private static string[] featureTags = ((string[])(null));
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
@@ -40,8 +40,8 @@ namespace BasketBusinessTestsGherkin.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Basket", "As a Customer\r\nI want to get information checked in products in my cart\r\nSo I can" +
-                    " know how much money will cost me", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Basket", "As a Customer\r\nI want to get information of checked products in my cart\r\nSo I can" +
+                    " know how much money will cost me", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -51,27 +51,27 @@ namespace BasketBusinessTestsGherkin.Features
             testRunner = null;
         }
         
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
         }
         
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
@@ -109,8 +109,8 @@ namespace BasketBusinessTestsGherkin.Features
  testRunner.Given("the catalogue has following products", ((string)(null)), table1, "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "UserName",
-                        "Fidelity discount discount",
+                        "PersonaName",
+                        "Fidelity discount",
                         "Preferred currency"});
             table2.AddRow(new string[] {
                         "David",
@@ -121,7 +121,7 @@ namespace BasketBusinessTestsGherkin.Features
                         "20%",
                         "EUR"});
             table2.AddRow(new string[] {
-                        "Mark",
+                        "Paul",
                         "0%",
                         "USD"});
             table2.AddRow(new string[] {
@@ -133,7 +133,7 @@ namespace BasketBusinessTestsGherkin.Features
                         "5%",
                         "JPY"});
 #line 12
- testRunner.And("these users are registered", ((string)(null)), table2, "And ");
+ testRunner.And("these personas are registered", ((string)(null)), table2, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "From Currency",
@@ -164,7 +164,7 @@ namespace BasketBusinessTestsGherkin.Features
                         "JPY",
                         "129.737"});
 #line 19
- testRunner.And("the rate exchange at the time of operation is as follows", ((string)(null)), table3, "And ");
+ testRunner.And("the exchange rate at the time of operation is as follows", ((string)(null)), table3, "And ");
 #line hidden
         }
         
@@ -173,28 +173,20 @@ namespace BasketBusinessTestsGherkin.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="This is a dummy Scenario to illustrate architecture")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta00->This is a dummy scenario to illustrate architecture")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "This is a dummy Scenario to illustrate architecture")]
-        public virtual void ThisIsADummyScenarioToIllustrateArchitecture()
+        [Xunit.TraitAttribute("Description", "Delta00->This is a dummy scenario to illustrate architecture")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        public void Delta00_ThisIsADummyScenarioToIllustrateArchitecture()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("This is a dummy Scenario to illustrate architecture", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 29
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta00->This is a dummy scenario to illustrate architecture", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 31
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -204,41 +196,35 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 30
+#line 32
  testRunner.Given("I create a sample answer request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 31
- testRunner.When("I request to service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 33
+ testRunner.When("I send the request to the service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 32
+#line 34
  testRunner.Then("the content of sample answer response will be \'true\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="A user can check in a single product")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta01->A persona can check in a single product")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "A user can check in a single product")]
-        public virtual void AUserCanCheckInASingleProduct()
+        [Xunit.TraitAttribute("Description", "Delta01->A persona can check in a single product")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        public void Delta01_APersonaCanCheckInASingleProduct()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user can check in a single product", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 36
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta01->A persona can check in a single product", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -248,50 +234,46 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 37
+#line 39
  testRunner.Given("I am David", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 38
+#line 40
  testRunner.And("I am having an empty cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 39
- testRunner.And("I check a product \'motion-cam-hero-10-2021\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 40
- testRunner.When("I list check in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 41
- testRunner.Then("there will be a single product with code \'motion-cam-hero-10-2021\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I check in a product \'motion-cam-hero-10-2021\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 42
+ testRunner.When("I list checked in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 43
+ testRunner.Then("there will be a single product with code \'motion-cam-hero-10-2021\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 44
  testRunner.And("cart total will be 10 EUR", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="A user can check in same product several times")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta02->A persona can check in same product several times")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "A user can check in same product several times")]
-        public virtual void AUserCanCheckInSameProductSeveralTimes()
+        [Xunit.TraitAttribute("Description", "Delta02->A persona can check in same product several times")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        public void Delta02_APersonaCanCheckInSameProductSeveralTimes()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user can check in same product several times", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 44
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta02->A persona can check in same product several times", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 49
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -301,21 +283,21 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 45
+#line 50
  testRunner.Given("I am David", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 46
+#line 51
  testRunner.And("I am having an empty cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "product"});
                 table4.AddRow(new string[] {
                             "motion-cam-hero-10-2021"});
-#line 47
+#line 52
  testRunner.And("I add following products to my cart 2 times", ((string)(null)), table4, "And ");
 #line hidden
-#line 50
- testRunner.When("I list check in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 55
+ testRunner.When("I list checked in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "product",
@@ -326,38 +308,36 @@ this.FeatureBackground();
                 table5.AddRow(new string[] {
                             "motion-cam-hero-10-2021",
                             "10"});
-#line 51
+#line 56
  testRunner.Then("following products will be found", ((string)(null)), table5, "Then ");
 #line hidden
-#line 55
+#line 60
  testRunner.And("total cost will be 20 EUR", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="A user can check several products too")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta03->A persona can also check in several products")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "A user can check several products too")]
-        public virtual void AUserCanCheckSeveralProductsToo()
+        [Xunit.TraitAttribute("Description", "Delta03->A persona can also check in several products")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        public void Delta03_APersonaCanAlsoCheckInSeveralProducts()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user can check several products too", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 57
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta03->A persona can also check in several products", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 66
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -367,10 +347,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 58
+#line 67
  testRunner.Given("I am David", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 59
+#line 68
  testRunner.And("I am having an empty cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -379,11 +359,11 @@ this.FeatureBackground();
                             "motion-cam-hero-10-2021"});
                 table6.AddRow(new string[] {
                             "phone-hero-13-2022"});
-#line 60
+#line 69
  testRunner.And("I add following products to my cart", ((string)(null)), table6, "And ");
 #line hidden
-#line 64
- testRunner.When("I list check in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 73
+ testRunner.When("I list checked in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "product",
@@ -394,38 +374,41 @@ this.FeatureBackground();
                 table7.AddRow(new string[] {
                             "phone-hero-13-2022",
                             "1342"});
-#line 65
+#line 74
  testRunner.Then("following products will be found", ((string)(null)), table7, "Then ");
 #line hidden
-#line 69
+#line 78
  testRunner.And("cart total will be 1352 EUR", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="A user can check in a product and pay in a different currency than preferred one")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta04->A persona can check in a product and pay in a different currency than pr" +
+            "eferred one")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "A user can check in a product and pay in a different currency than preferred one")]
-        public virtual void AUserCanCheckInAProductAndPayInADifferentCurrencyThanPreferredOne()
+        [Xunit.TraitAttribute("Description", "Delta04->A persona can check in a product and pay in a different currency than pr" +
+            "eferred one")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        [Xunit.TraitAttribute("Category", "executedInDelta04")]
+        public void Delta04_APersonaCanCheckInAProductAndPayInADifferentCurrencyThanPreferredOne()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03",
+                    "executedInDelta04"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user can check in a product and pay in a different currency than preferred one", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 71
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta04->A persona can check in a product and pay in a different currency than pr" +
+                    "eferred one", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 85
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -435,50 +418,52 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 72
- testRunner.Given("I am Mark", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 86
+ testRunner.Given("I am Paul", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 73
+#line 87
  testRunner.And("I am having an empty cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 74
+#line 88
  testRunner.And("I check in a product \'motion-cam-hero-10-2021\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 75
- testRunner.When("I list check in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 89
+ testRunner.When("I list checked in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 76
+#line 90
  testRunner.Then("there will be a single product with code \'motion-cam-hero-10-2021\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 77
+#line 91
  testRunner.And("cart total will be 11.34 USD", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="A user purchases a checked in product")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta05->A persona purchases a checked in product")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "A user purchases a checked in product")]
-        public virtual void AUserPurchasesACheckedInProduct()
+        [Xunit.TraitAttribute("Description", "Delta05->A persona purchases a checked in product")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        [Xunit.TraitAttribute("Category", "executedInDelta04")]
+        [Xunit.TraitAttribute("Category", "executedInDelta05")]
+        public void Delta05_APersonaPurchasesACheckedInProduct()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03",
+                    "executedInDelta04",
+                    "executedInDelta05"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user purchases a checked in product", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 81
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta05->A persona purchases a checked in product", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 101
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -488,44 +473,48 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 82
- testRunner.Given("I am Mark", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 102
+ testRunner.Given("I am Paul", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 83
+#line 103
  testRunner.And("I check in a product \'motion-cam-hero-10-2021\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 84
+#line 104
  testRunner.When("I purchase my product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 85
+#line 105
  testRunner.Then("I will receive a message \'Thank you for your purchase\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="A user cannot purchase when cart is empty")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta06->A persona cannot purchase when cart is empty")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "A user cannot purchase when cart is empty")]
-        public virtual void AUserCannotPurchaseWhenCartIsEmpty()
+        [Xunit.TraitAttribute("Description", "Delta06->A persona cannot purchase when cart is empty")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        [Xunit.TraitAttribute("Category", "executedInDelta04")]
+        [Xunit.TraitAttribute("Category", "executedInDelta05")]
+        [Xunit.TraitAttribute("Category", "executedInDelta06")]
+        public void Delta06_APersonaCannotPurchaseWhenCartIsEmpty()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03",
+                    "executedInDelta04",
+                    "executedInDelta05",
+                    "executedInDelta06"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user cannot purchase when cart is empty", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 87
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta06->A persona cannot purchase when cart is empty", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 114
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -535,44 +524,50 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 88
- testRunner.Given("I am Mark", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 115
+ testRunner.Given("I am Paul", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 89
+#line 116
  testRunner.And("I am having an empty cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 90
+#line 117
  testRunner.When("I purchase my product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 91
+#line 118
  testRunner.Then("I will receive a message \'There are no items to purchase\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="A user who checks in a discounted product will get a discount")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta07->A persona who checks in a discounted product will get a discount")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "A user who checks in a discounted product will get a discount")]
-        public virtual void AUserWhoChecksInADiscountedProductWillGetADiscount()
+        [Xunit.TraitAttribute("Description", "Delta07->A persona who checks in a discounted product will get a discount")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        [Xunit.TraitAttribute("Category", "executedInDelta04")]
+        [Xunit.TraitAttribute("Category", "executedInDelta05")]
+        [Xunit.TraitAttribute("Category", "executedInDelta06")]
+        [Xunit.TraitAttribute("Category", "executedInDelta07")]
+        public void Delta07_APersonaWhoChecksInADiscountedProductWillGetADiscount()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03",
+                    "executedInDelta04",
+                    "executedInDelta05",
+                    "executedInDelta06",
+                    "executedInDelta07"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user who checks in a discounted product will get a discount", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 95
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta07->A persona who checks in a discounted product will get a discount", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 130
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -582,10 +577,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 96
+#line 131
  testRunner.Given("I am David", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 97
+#line 132
  testRunner.And("I am having an empty cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -594,11 +589,11 @@ this.FeatureBackground();
                             "motion-cam-hero-10-2021"});
                 table8.AddRow(new string[] {
                             "motion-cam-hero-09-2019"});
-#line 98
+#line 133
  testRunner.And("I add following products to my cart", ((string)(null)), table8, "And ");
 #line hidden
-#line 102
- testRunner.When("I list check in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 137
+ testRunner.When("I list checked in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "product",
@@ -609,38 +604,46 @@ this.FeatureBackground();
                 table9.AddRow(new string[] {
                             "motion-cam-hero-09-2019",
                             "9"});
-#line 103
+#line 138
  testRunner.Then("following products will be found", ((string)(null)), table9, "Then ");
 #line hidden
-#line 107
+#line 142
  testRunner.And("cart total will be 19 EUR", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="A user with fidelity discount will get a discount on final price")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta08->A persona with fidelity discount will get a discount on final price")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "A user with fidelity discount will get a discount on final price")]
-        public virtual void AUserWithFidelityDiscountWillGetADiscountOnFinalPrice()
+        [Xunit.TraitAttribute("Description", "Delta08->A persona with fidelity discount will get a discount on final price")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        [Xunit.TraitAttribute("Category", "executedInDelta04")]
+        [Xunit.TraitAttribute("Category", "executedInDelta05")]
+        [Xunit.TraitAttribute("Category", "executedInDelta06")]
+        [Xunit.TraitAttribute("Category", "executedInDelta07")]
+        [Xunit.TraitAttribute("Category", "executedInDelta08")]
+        public void Delta08_APersonaWithFidelityDiscountWillGetADiscountOnFinalPrice()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03",
+                    "executedInDelta04",
+                    "executedInDelta05",
+                    "executedInDelta06",
+                    "executedInDelta07",
+                    "executedInDelta08"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user with fidelity discount will get a discount on final price", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 111
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta08->A persona with fidelity discount will get a discount on final price", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 155
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -650,53 +653,63 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 112
+#line 156
  testRunner.Given("I am Maria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 113
+#line 157
  testRunner.And("I am having an empty cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 114
+#line 158
  testRunner.And("I check in a product \'motion-cam-hero-10-2021\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 115
- testRunner.When("I list check in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 159
+ testRunner.When("I list checked in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 116
+#line 160
  testRunner.Then("there will be a single product with code \'motion-cam-hero-10-2021\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 117
+#line 161
  testRunner.And("cart total will be 8 EUR", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 118
+#line 162
  testRunner.And("cart total will show a discount of 2 EUR", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Product discount does not apply for users with fidelity discount")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta09->Product discount does not apply for personas with fidelity discount")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "Product discount does not apply for users with fidelity discount")]
-        public virtual void ProductDiscountDoesNotApplyForUsersWithFidelityDiscount()
+        [Xunit.TraitAttribute("Description", "Delta09->Product discount does not apply for personas with fidelity discount")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        [Xunit.TraitAttribute("Category", "executedInDelta04")]
+        [Xunit.TraitAttribute("Category", "executedInDelta05")]
+        [Xunit.TraitAttribute("Category", "executedInDelta06")]
+        [Xunit.TraitAttribute("Category", "executedInDelta07")]
+        [Xunit.TraitAttribute("Category", "executedInDelta08")]
+        [Xunit.TraitAttribute("Category", "executedInDelta09")]
+        public void Delta09_ProductDiscountDoesNotApplyForPersonasWithFidelityDiscount()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03",
+                    "executedInDelta04",
+                    "executedInDelta05",
+                    "executedInDelta06",
+                    "executedInDelta07",
+                    "executedInDelta08",
+                    "executedInDelta09"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Product discount does not apply for users with fidelity discount", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 120
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta09->Product discount does not apply for personas with fidelity discount", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 174
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -706,10 +719,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 121
+#line 175
  testRunner.Given("I am Maria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 122
+#line 176
  testRunner.And("I am having an empty cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -718,11 +731,11 @@ this.FeatureBackground();
                             "motion-cam-hero-10-2021"});
                 table10.AddRow(new string[] {
                             "motion-cam-hero-9-2019"});
-#line 123
+#line 177
  testRunner.And("I add following products to my cart", ((string)(null)), table10, "And ");
 #line hidden
-#line 127
- testRunner.When("I list check in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 181
+ testRunner.When("I list checked in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "product",
@@ -733,41 +746,53 @@ this.FeatureBackground();
                 table11.AddRow(new string[] {
                             "motion-cam-hero-9-2019",
                             "10"});
-#line 128
+#line 182
  testRunner.Then("following products will be found", ((string)(null)), table11, "Then ");
 #line hidden
-#line 132
+#line 186
  testRunner.And("cart total will be 16 EUR", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 133
+#line 187
  testRunner.And("cart total will show a discount of 4 EUR", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Product discount does not apply on a different currency than local one")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta10->Product discount does not apply on a different currency than local one")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "Product discount does not apply on a different currency than local one")]
-        public virtual void ProductDiscountDoesNotApplyOnADifferentCurrencyThanLocalOne()
+        [Xunit.TraitAttribute("Description", "Delta10->Product discount does not apply on a different currency than local one")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        [Xunit.TraitAttribute("Category", "executedInDelta04")]
+        [Xunit.TraitAttribute("Category", "executedInDelta05")]
+        [Xunit.TraitAttribute("Category", "executedInDelta06")]
+        [Xunit.TraitAttribute("Category", "executedInDelta07")]
+        [Xunit.TraitAttribute("Category", "executedInDelta08")]
+        [Xunit.TraitAttribute("Category", "executedInDelta09")]
+        [Xunit.TraitAttribute("Category", "executedInDelta10")]
+        public void Delta10_ProductDiscountDoesNotApplyOnADifferentCurrencyThanLocalOne()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03",
+                    "executedInDelta04",
+                    "executedInDelta05",
+                    "executedInDelta06",
+                    "executedInDelta07",
+                    "executedInDelta08",
+                    "executedInDelta09",
+                    "executedInDelta10"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Product discount does not apply on a different currency than local one", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 136
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta10->Product discount does not apply on a different currency than local one", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 200
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -777,50 +802,64 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 137
- testRunner.Given("I am Mark", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 201
+ testRunner.Given("I am Paul", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 138
+#line 202
  testRunner.And("I am having an empty cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 139
+#line 203
  testRunner.And("I check in a product \'motion-cam-hero-09-2019\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 140
- testRunner.When("I list check in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 204
+ testRunner.When("I list checked in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 141
+#line 205
  testRunner.Then("there will be a single product with code \'motion-cam-hero-09-2019\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 142
+#line 206
  testRunner.And("cart total will be 11.34 USD", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Fidelity discount applies on a different currency than local one")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta11->Fidelity discount applies on a different currency than local one")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "Fidelity discount applies on a different currency than local one")]
-        public virtual void FidelityDiscountAppliesOnADifferentCurrencyThanLocalOne()
+        [Xunit.TraitAttribute("Description", "Delta11->Fidelity discount applies on a different currency than local one")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        [Xunit.TraitAttribute("Category", "executedInDelta04")]
+        [Xunit.TraitAttribute("Category", "executedInDelta05")]
+        [Xunit.TraitAttribute("Category", "executedInDelta06")]
+        [Xunit.TraitAttribute("Category", "executedInDelta07")]
+        [Xunit.TraitAttribute("Category", "executedInDelta08")]
+        [Xunit.TraitAttribute("Category", "executedInDelta09")]
+        [Xunit.TraitAttribute("Category", "executedInDelta10")]
+        [Xunit.TraitAttribute("Category", "executedInDelta11")]
+        public void Delta11_FidelityDiscountAppliesOnADifferentCurrencyThanLocalOne()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03",
+                    "executedInDelta04",
+                    "executedInDelta05",
+                    "executedInDelta06",
+                    "executedInDelta07",
+                    "executedInDelta08",
+                    "executedInDelta09",
+                    "executedInDelta10",
+                    "executedInDelta11"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fidelity discount applies on a different currency than local one", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 144
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta11->Fidelity discount applies on a different currency than local one", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 220
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -830,50 +869,66 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 145
+#line 221
  testRunner.Given("I am Jules", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 146
+#line 222
  testRunner.And("I am having an empty cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 147
+#line 223
  testRunner.And("I check in a product \'motion-cam-hero-09-2019\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 148
- testRunner.When("I list check in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 224
+ testRunner.When("I list checked in products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 149
+#line 225
  testRunner.Then("there will be a single product with code \'motion-cam-hero-09-2019\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 150
+#line 226
  testRunner.And("cart total will be 10.77 USD", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Fidelity discount is assigned to currency")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta12->Fidelity discount is assigned to currency")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "Fidelity discount is assigned to currency")]
-        public virtual void FidelityDiscountIsAssignedToCurrency()
+        [Xunit.TraitAttribute("Description", "Delta12->Fidelity discount is assigned to currency")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        [Xunit.TraitAttribute("Category", "executedInDelta04")]
+        [Xunit.TraitAttribute("Category", "executedInDelta05")]
+        [Xunit.TraitAttribute("Category", "executedInDelta06")]
+        [Xunit.TraitAttribute("Category", "executedInDelta07")]
+        [Xunit.TraitAttribute("Category", "executedInDelta08")]
+        [Xunit.TraitAttribute("Category", "executedInDelta09")]
+        [Xunit.TraitAttribute("Category", "executedInDelta10")]
+        [Xunit.TraitAttribute("Category", "executedInDelta11")]
+        [Xunit.TraitAttribute("Category", "executedInDelta12")]
+        public void Delta12_FidelityDiscountIsAssignedToCurrency()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03",
+                    "executedInDelta04",
+                    "executedInDelta05",
+                    "executedInDelta06",
+                    "executedInDelta07",
+                    "executedInDelta08",
+                    "executedInDelta09",
+                    "executedInDelta10",
+                    "executedInDelta11",
+                    "executedInDelta12"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fidelity discount is assigned to currency", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 152
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta12->Fidelity discount is assigned to currency", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 241
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -883,41 +938,62 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 153
+#line 242
  testRunner.Given("I am Jules", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 154
+#line 243
  testRunner.When("I switch my preferred currency from USD to EUR", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 155
+#line 244
  testRunner.Then("my fidelity discount will be 0%", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Fidelity discount is persisted when the user switches back to previous currency")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta13->Fidelity discount is persisted when the persona switches back to previou" +
+            "s currency")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "Fidelity discount is persisted when the user switches back to previous currency")]
-        public virtual void FidelityDiscountIsPersistedWhenTheUserSwitchesBackToPreviousCurrency()
+        [Xunit.TraitAttribute("Description", "Delta13->Fidelity discount is persisted when the persona switches back to previou" +
+            "s currency")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        [Xunit.TraitAttribute("Category", "executedInDelta04")]
+        [Xunit.TraitAttribute("Category", "executedInDelta05")]
+        [Xunit.TraitAttribute("Category", "executedInDelta06")]
+        [Xunit.TraitAttribute("Category", "executedInDelta07")]
+        [Xunit.TraitAttribute("Category", "executedInDelta08")]
+        [Xunit.TraitAttribute("Category", "executedInDelta09")]
+        [Xunit.TraitAttribute("Category", "executedInDelta10")]
+        [Xunit.TraitAttribute("Category", "executedInDelta11")]
+        [Xunit.TraitAttribute("Category", "executedInDelta12")]
+        [Xunit.TraitAttribute("Category", "executedInDelta13")]
+        public void Delta13_FidelityDiscountIsPersistedWhenThePersonaSwitchesBackToPreviousCurrency()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03",
+                    "executedInDelta04",
+                    "executedInDelta05",
+                    "executedInDelta06",
+                    "executedInDelta07",
+                    "executedInDelta08",
+                    "executedInDelta09",
+                    "executedInDelta10",
+                    "executedInDelta11",
+                    "executedInDelta12",
+                    "executedInDelta13"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Fidelity discount is persisted when the user switches back to previous currency", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 157
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta13->Fidelity discount is persisted when the persona switches back to previou" +
+                    "s currency", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 260
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -927,47 +1003,67 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 158
+#line 261
  testRunner.Given("I am Jules", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 159
+#line 262
  testRunner.And("I switched my preferred currency from USD to EUR", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 160
+#line 263
  testRunner.When("I siwtch my preferred currency from EUR to USD", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 161
+#line 264
  testRunner.Then("my fidelity discount will be 5%", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="A user who buys more than 2000 EUR in a single buy upgrades fidelity discount by " +
-            "1%")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta14->A persona who buys more than 2000 EUR in a single buy upgrades fidelity " +
+            "discount by 1%")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "A user who buys more than 2000 EUR in a single buy upgrades fidelity discount by " +
-            "1%")]
-        public virtual void AUserWhoBuysMoreThan2000EURInASingleBuyUpgradesFidelityDiscountBy1()
+        [Xunit.TraitAttribute("Description", "Delta14->A persona who buys more than 2000 EUR in a single buy upgrades fidelity " +
+            "discount by 1%")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        [Xunit.TraitAttribute("Category", "executedInDelta04")]
+        [Xunit.TraitAttribute("Category", "executedInDelta05")]
+        [Xunit.TraitAttribute("Category", "executedInDelta06")]
+        [Xunit.TraitAttribute("Category", "executedInDelta07")]
+        [Xunit.TraitAttribute("Category", "executedInDelta08")]
+        [Xunit.TraitAttribute("Category", "executedInDelta09")]
+        [Xunit.TraitAttribute("Category", "executedInDelta10")]
+        [Xunit.TraitAttribute("Category", "executedInDelta11")]
+        [Xunit.TraitAttribute("Category", "executedInDelta12")]
+        [Xunit.TraitAttribute("Category", "executedInDelta13")]
+        [Xunit.TraitAttribute("Category", "executedInDelta14")]
+        public void Delta14_APersonaWhoBuysMoreThan2000EURInASingleBuyUpgradesFidelityDiscountBy1()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03",
+                    "executedInDelta04",
+                    "executedInDelta05",
+                    "executedInDelta06",
+                    "executedInDelta07",
+                    "executedInDelta08",
+                    "executedInDelta09",
+                    "executedInDelta10",
+                    "executedInDelta11",
+                    "executedInDelta12",
+                    "executedInDelta13",
+                    "executedInDelta14"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user who buys more than 2000 EUR in a single buy upgrades fidelity discount by " +
-                    "1%", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 164
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta14->A persona who buys more than 2000 EUR in a single buy upgrades fidelity " +
+                    "discount by 1%", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 281
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -977,8 +1073,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 165
- testRunner.Given("I am Mark", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 282
+ testRunner.Given("I am Paul", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "product"});
@@ -986,10 +1082,10 @@ this.FeatureBackground();
                             "phone-hero-13-2022"});
                 table12.AddRow(new string[] {
                             "phone-hero-13-2022"});
-#line 166
+#line 283
  testRunner.And("I add following products to my cart", ((string)(null)), table12, "And ");
 #line hidden
-#line 170
+#line 287
  testRunner.When("I purchase these products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
@@ -998,35 +1094,57 @@ this.FeatureBackground();
                             "Thank you for your purchase"});
                 table13.AddRow(new string[] {
                             "Congratulations. Now you have a fidelity discount of 1%"});
-#line 171
+#line 288
  testRunner.Then("I will have following messages in my inbox", ((string)(null)), table13, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Maximum fidelity discount for a user is 20%")]
+        [Xunit.SkippableFactAttribute(DisplayName="Delta->Maximum fidelity discount for a persona is 20%")]
         [Xunit.TraitAttribute("FeatureTitle", "Basket")]
-        [Xunit.TraitAttribute("Description", "Maximum fidelity discount for a user is 20%")]
-        public virtual void MaximumFidelityDiscountForAUserIs20()
+        [Xunit.TraitAttribute("Description", "Delta->Maximum fidelity discount for a persona is 20%")]
+        [Xunit.TraitAttribute("Category", "executedInDelta00")]
+        [Xunit.TraitAttribute("Category", "executedInDelta01")]
+        [Xunit.TraitAttribute("Category", "executedInDelta02")]
+        [Xunit.TraitAttribute("Category", "executedInDelta03")]
+        [Xunit.TraitAttribute("Category", "executedInDelta04")]
+        [Xunit.TraitAttribute("Category", "executedInDelta05")]
+        [Xunit.TraitAttribute("Category", "executedInDelta06")]
+        [Xunit.TraitAttribute("Category", "executedInDelta07")]
+        [Xunit.TraitAttribute("Category", "executedInDelta08")]
+        [Xunit.TraitAttribute("Category", "executedInDelta09")]
+        [Xunit.TraitAttribute("Category", "executedInDelta10")]
+        [Xunit.TraitAttribute("Category", "executedInDelta11")]
+        [Xunit.TraitAttribute("Category", "executedInDelta12")]
+        [Xunit.TraitAttribute("Category", "executedInDelta13")]
+        [Xunit.TraitAttribute("Category", "executedInDelta14")]
+        [Xunit.TraitAttribute("Category", "executedInDelta15")]
+        public void Delta_MaximumFidelityDiscountForAPersonaIs20()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "executedInDelta00",
+                    "executedInDelta01",
+                    "executedInDelta02",
+                    "executedInDelta03",
+                    "executedInDelta04",
+                    "executedInDelta05",
+                    "executedInDelta06",
+                    "executedInDelta07",
+                    "executedInDelta08",
+                    "executedInDelta09",
+                    "executedInDelta10",
+                    "executedInDelta11",
+                    "executedInDelta12",
+                    "executedInDelta13",
+                    "executedInDelta14",
+                    "executedInDelta15"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Maximum fidelity discount for a user is 20%", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 176
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delta->Maximum fidelity discount for a persona is 20%", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 309
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -1036,7 +1154,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
 this.FeatureBackground();
 #line hidden
-#line 177
+#line 310
  testRunner.Given("I am Maria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1045,10 +1163,10 @@ this.FeatureBackground();
                             "phone-hero-13-2022"});
                 table14.AddRow(new string[] {
                             "phone-hero-13-2022"});
-#line 178
+#line 311
  testRunner.And("I add following products to my cart", ((string)(null)), table14, "And ");
 #line hidden
-#line 182
+#line 315
  testRunner.When("I purchase these products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1056,8 +1174,8 @@ this.FeatureBackground();
                 table15.AddRow(new string[] {
                             "Thank you for your purchase"});
                 table15.AddRow(new string[] {
-                            "Congratulations. Now you have a fidelity discount of 1%"});
-#line 183
+                            "Your fidelity discount is 20%"});
+#line 316
  testRunner.Then("I will have following messages in my inbox", ((string)(null)), table15, "Then ");
 #line hidden
             }
