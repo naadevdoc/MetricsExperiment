@@ -242,3 +242,23 @@ Scenario: Delta12->Fidelity discount is assigned to currency
 	Given I am Jules
 	When I switch my preferred currency from USD to EUR
 	Then my fidelity discount will be 0%
+
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+@executedInDelta09
+@executedInDelta10
+@executedInDelta11
+@executedInDelta12
+@executedInDelta13
+Scenario: Delta13->Fidelity discount is persisted when the persona switches back to previous currency
+	Given I am Jules
+	And I switched my preferred currency from USD to EUR
+	When I siwtch my preferred currency from EUR to USD
+	Then my fidelity discount will be 5%
