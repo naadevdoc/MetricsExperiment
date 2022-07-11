@@ -139,3 +139,23 @@ Scenario: Delta07->A persona who checks in a discounted product will get a disco
 	 | motion-cam-hero-10-2021 | 10    |
 	 | motion-cam-hero-09-2019 | 9     |
 	And cart total will be 19 EUR
+
+Rule: Personas have a fidelity discount and this fidelity discount is different depending on buying currency
+
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+Scenario: Delta08->A persona with fidelity discount will get a discount on final price
+	Given I am Maria
+	And I am having an empty cart
+	And I check in a product 'motion-cam-hero-10-2021'
+	When I list checked in products
+	Then there will be a single product with code 'motion-cam-hero-10-2021'
+	And cart total will be 8 EUR
+	And cart total will show a discount of 2 EUR
