@@ -90,3 +90,16 @@ Scenario: Delta04->A persona can check in a product and pay in a different curre
 	Then there will be a single product with code 'motion-cam-hero-10-2021'
 	And cart total will be 11.34 USD
 	
+Rule: A persona can purchase a previously checked in product
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+Scenario: Delta05->A persona purchases a checked in product
+	Given I am Paul
+	And I check in a product 'motion-cam-hero-10-2021'
+	When I purchase my product
+	Then I will receive a message 'Thank you for your purchase'
+	
