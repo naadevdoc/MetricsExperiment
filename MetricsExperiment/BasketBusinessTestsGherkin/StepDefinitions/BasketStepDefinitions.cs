@@ -1,6 +1,6 @@
 using BasketBusiness;
 using BasketBusiness.Services;
-using BasketBusiness.Services.Implementation.Model;
+using BasketBusiness.Services.Implementation.Poco;
 
 namespace BasketBusinessTestsGherkin.StepDefinitions
 {
@@ -16,11 +16,13 @@ namespace BasketBusinessTestsGherkin.StepDefinitions
             sampleAnswerBasketRequest = new SampleAnswerBasketRequest();
         }
 
-        [When(@"I request the request to the service")]
-        public void WhenIRequestToService()
+
+        [When(@"I send the request to the service")]
+        public void WhenISendTheRequestToTheService()
         {
             sampleAnswerBasketResponse = ServiceFactory.GetA<IBasketServices>().GetSampleResponseService(sampleAnswerBasketRequest);
         }
+
         [Then(@"the content of sample answer response will be '([^']*)'")]
         public void ThenTheContentOfSampleAnswerResponseWillBe(bool trueOrFalse)
         {
@@ -29,4 +31,5 @@ namespace BasketBusinessTestsGherkin.StepDefinitions
 
 
     }
+
 }
