@@ -102,4 +102,16 @@ Scenario: Delta05->A persona purchases a checked in product
 	And I check in a product 'motion-cam-hero-10-2021'
 	When I purchase my product
 	Then I will receive a message 'Thank you for your purchase'
-	
+
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+Scenario: Delta06->A persona cannot purchase when cart is empty
+	Given I am Paul
+	And I am having an empty cart
+	When I purchase my product
+	Then I will receive a message 'There are no items to purchase'	
