@@ -58,3 +58,21 @@ Scenario: Delta02->A persona can check in same product several times
 	 | motion-cam-hero-10-2021 | 10    |
 	 | motion-cam-hero-10-2021 | 10    |
 	And total cost will be 20 EUR
+
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+Scenario: Delta03->A persona can also check in several products
+	Given I am David
+	And I am having an empty cart
+	And I add following products to my cart
+	 | product                 |
+	 | motion-cam-hero-10-2021 |
+	 | phone-hero-13-2022      |
+	When I list checked in products
+	Then following products will be found
+	 | product                 | prize |
+	 | motion-cam-hero-10-2021 | 10    |
+	 | phone-hero-13-2022      | 1342  |
+	And cart total will be 1352 EUR
