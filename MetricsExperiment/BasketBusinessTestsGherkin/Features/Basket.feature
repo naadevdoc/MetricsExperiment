@@ -262,3 +262,31 @@ Scenario: Delta13->Fidelity discount is persisted when the persona switches back
 	And I switched my preferred currency from USD to EUR
 	When I siwtch my preferred currency from EUR to USD
 	Then my fidelity discount will be 5%
+
+
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+@executedInDelta08
+@executedInDelta09
+@executedInDelta10
+@executedInDelta11
+@executedInDelta12
+@executedInDelta13
+@executedInDelta14
+Scenario: Delta14->A persona who buys more than 2000 EUR in a single buy upgrades fidelity discount by 1%
+	Given I am Paul
+	And I add following products to my cart
+	 | product            |
+	 | phone-hero-13-2022 |
+	 | phone-hero-13-2022 |
+	When I purchase these products
+	Then I will have following messages in my inbox
+	 | Message                                                 |
+	 | Thank you for your purchase                             |
+	 | Congratulations. Now you have a fidelity discount of 1% |
