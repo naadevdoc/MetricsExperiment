@@ -115,3 +115,27 @@ Scenario: Delta06->A persona cannot purchase when cart is empty
 	And I am having an empty cart
 	When I purchase my product
 	Then I will receive a message 'There are no items to purchase'	
+
+Rule: Some products have a discount
+
+@executedInDelta00
+@executedInDelta01
+@executedInDelta02
+@executedInDelta03
+@executedInDelta04
+@executedInDelta05
+@executedInDelta06
+@executedInDelta07
+Scenario: Delta07->A persona who checks in a discounted product will get a discount
+	Given I am David
+	And I am having an empty cart
+	And I add following products to my cart
+	 | product                 |
+	 | motion-cam-hero-10-2021 |
+	 | motion-cam-hero-09-2019 |
+	When I list checked in products
+	Then following products will be found
+	 | product                 | prize |
+	 | motion-cam-hero-10-2021 | 10    |
+	 | motion-cam-hero-09-2019 | 9     |
+	And cart total will be 19 EUR
