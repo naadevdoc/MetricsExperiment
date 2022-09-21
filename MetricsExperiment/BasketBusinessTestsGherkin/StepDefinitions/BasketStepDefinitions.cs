@@ -12,7 +12,7 @@ namespace BasketBusinessTestsGherkin.StepDefinitions
 
         [Given(@"I create a sample answer request")]
         public void GivenICreateASampleAnswerRequest()
-        {            
+        {
             sampleAnswerBasketRequest = new SampleAnswerBasketRequest();
         }
 
@@ -26,7 +26,7 @@ namespace BasketBusinessTestsGherkin.StepDefinitions
         [Then(@"the content of sample answer response will be '([^']*)'")]
         public void ThenTheContentOfSampleAnswerResponseWillBe(bool trueOrFalse)
         {
-            Assert.True(sampleAnswerBasketResponse?.Content == trueOrFalse,"Content shall be true");
+            Assert.True(sampleAnswerBasketResponse?.Content == trueOrFalse, "Content shall be true");
         }
 
 

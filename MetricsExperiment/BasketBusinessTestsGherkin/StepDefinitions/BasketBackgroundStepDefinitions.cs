@@ -41,7 +41,7 @@ namespace BasketBusinessTestsGherkin.StepDefinitions
                     Currency = productRow["currency"].ToCurrency(),
                     Discount = productRow["discount"].FromPercentageStringToDouble()
                 };
-                catalogueServices.AddProduct(product);
+                catalogueServices.AddOrUpdate(product);
             }
 
         }
@@ -65,7 +65,7 @@ namespace BasketBusinessTestsGherkin.StepDefinitions
                     FidelityDiscount = personaRow["Fidelity discount"].FromPercentageStringToDouble(),
                     PreferredCurrency = personaRow["Preferred currency"].ToCurrency()
                 };
-                catalogueServices.AddPersona(persona);
+                catalogueServices.AddOrUpdate(persona);
             }
         }
         /*         
@@ -89,7 +89,7 @@ namespace BasketBusinessTestsGherkin.StepDefinitions
                     To = exchangeRow["From Currency"].ToCurrency(),
                     Rate = exchangeRow["Rate"].ToDouble()
                 };
-                catalogueServices.AddExchangeRate(exchangeRate);
+                catalogueServices.AddOrUpdate(exchangeRate);
             }
         }
     }

@@ -11,9 +11,9 @@ namespace BasketBusiness.Services.Implementation
     internal class CatalogueServices : ICatalogueServices
     {
         static List<ExchangeRate> ExchangeRates { get; set; } = new List<ExchangeRate>();
-        public void AddExchangeRate(ExchangeRate exchangeRate)
+        public void AddOrUpdate(ExchangeRate exchangeRate)
         {
-            lock(ExchangeRates)
+            lock (ExchangeRates)
             {
                 ExchangeRates = ExchangeRates.Where(x => x.From != exchangeRate.From && x.To != exchangeRate.To).ToList();
                 ExchangeRates.Add(exchangeRate);
@@ -21,9 +21,9 @@ namespace BasketBusiness.Services.Implementation
         }
 
         static List<Persona> Personas { get; set; } = new List<Persona>();
-        public void AddPersona(Persona persona)
+        public void AddOrUpdate(Persona persona)
         {
-            lock(Personas)
+            lock (Personas)
             {
                 Personas = Personas.Where(x => x.Name != persona.Name).ToList();
                 Personas.Add(persona);
@@ -31,12 +31,28 @@ namespace BasketBusiness.Services.Implementation
         }
 
         static List<Product> Products { get; set; } = new List<Product>();
-        public void AddProduct(Product product)
+        public void AddOrUpdate(Product product)
         {
-            lock(Products)
+            lock (Products)
             {
                 Products = Products.Where(x => x.Name != product.Name).ToList();
                 Products.Add(product);
+            }
+        }
+
+        public Product GetProduct(string Name)
+        {
+            lock (Products)
+            {
+                return Products.Where(x => x.Name == Name).FirstOrDefault() ?? throw new KeyNotFoundException("Name");
+            }
+        }
+
+        public Persona GetPersona(string Name)
+        {
+            lock (Personas)
+            {
+                return Personas.Where(x => x.Name == Name).FirstOrDefault() ?? throw new KeyNotFoundException("Name");
             }
         }
     }

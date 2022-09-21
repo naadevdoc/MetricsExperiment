@@ -1,4 +1,5 @@
-﻿using System;
+using BasketBusiness.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace BasketBusiness.Services.Implementation.Poco
 {
-    public class BasketResponse
+    public class CartContentRequest : BasketRequest
     {
-        public bool Ok { get; set; } = true;
-        public string Error { get; set; } = string.Empty;
+        public Persona Persona { get; set; } = new Persona();
     }
 }

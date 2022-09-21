@@ -9,8 +9,10 @@ namespace BasketBusiness.Services
 {
     public interface ICatalogueServices
     {
-        void AddProduct(Product product);
-        void AddPersona(Persona persona);
-        void AddExchangeRate(ExchangeRate exchangeRate);
+        void AddOrUpdate(Product product);
+        Product GetProduct(string Name);
+        void AddOrUpdate(Persona persona);
+        Persona GetPersona(string Name);
+        void AddOrUpdate(ExchangeRate exchangeRate);
     }
 }

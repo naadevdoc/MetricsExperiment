@@ -10,5 +10,8 @@ namespace BasketBusiness.Services
     public interface IBasketServices
     {
         SampleAnswerBasketResponse GetSampleResponseService(SampleAnswerBasketRequest? basketRequest);
+        ClearCartResponse ClearCart(ClearCartRequest clearCartRequest);
+        CheckInResponse CheckInProduct(CheckInRequest checkInRequest);
+        CartContentResponse GetCartContent(CartContentRequest cartContentRequest);
     }
 }
